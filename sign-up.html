@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+<main class="form-signup">
+    <form class="form d-flex flex-column align-items-center">
+        <img class="mb-5" src="assets/images/logo.png" alt="finance-logo">
+        <h1 class="form-title h3 mb-3 fw-bold fs-1">Создайте аккаунт</h1>
+        <div class="input-group pb-2">
+            <div class="input-group-text"><i class="far fa-user fa-lg"></i></div>
+            <input type="email" class="form-control form-input" id="input-name" placeholder="ФИО">
+            <label for="input-name"></label>
+        </div>
+        <div class="input-group pb-2">
+            <div class="input-group-text"><i class="far fa-envelope-open fa-lg"></i></div>
+            <input type="email" class="form-control form-input" id="input-email" placeholder="Электронная почта">
+            <label for="input-email"></label>
+        </div>
+        <div class="input-group pb-2">
+            <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
+            <input type="password" class="form-control form-input" id="input-password" placeholder="Пароль">
+            <label for="input-password"></label>
+        </div>
+        <div class="input-group pb-4">
+            <div class="input-group-text"><i class="fa-solid fa-lock fa-lg"></i></div>
+            <input type="password" class="form-control form-input" id="input-repeat-password"
+                   placeholder="Подтверждение пароля">
+            <label for="input-repeat-password"></label>
+        </div>
+        <div class="active">
+            <button class="btn btn-lg btn-primary mb-2" type="submit">Войти</button>
+            <p class="">Уже есть аккаунт? <a href="#" class="mx-2">Войдите в систему</a></p>
+        </div>
+    </form>
+</main>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

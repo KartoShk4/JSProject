@@ -1,0 +1,16 @@
+@import "common.css";
+
+.layout {
+    max-width: 219px;
+}
+
+.btn {
+    text-align: start;
+}
+
+.menu .btn {
+    font-size: 14px;
+    width: 178px;
+    padding: 9px 10px 8px 10px;
+    font-family: Roboto-light, sans-serif;
+}

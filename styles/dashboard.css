@@ -1,0 +1,16 @@
+@import "common.css";
+
+.dashboard-filters {
+    display: flex;
+    gap: 20px;
+}
+
+.dashboard-filters .btn {
+    width: 100px;
+    height: 37px;
+}
+
+.dashboard-filters .btn:hover {
+    background-color: #6C757D;
+    color: white;
+}

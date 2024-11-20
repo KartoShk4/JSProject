@@ -15,6 +15,17 @@
     height: 121px;
 }
 
-.categories-block .btn {
+.modal-header {
+    border-bottom: none;
+}
 
+.modal-footer {
+    border-top: none;
+}
+
+.modal-body {
+    color: #290661;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }

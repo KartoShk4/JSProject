@@ -81,8 +81,8 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Депозиты</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
-                    <button class="btn btn-danger">Удалить</button>
+                    <button type="button" class="btn btn-primary me-2">Редактировать</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete" class="btn btn-danger">Удалить</button>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                 <span class="fs-3 pb-2">Зарплата</span>
                 <div class="actions pb-4">
                     <button class="btn btn-primary me-2">Редактировать</button>
-                    <button class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
                 <span class="fs-3 pb-2">Сбережения</span>
                 <div class="actions pb-4">
                     <button class="btn btn-primary me-2">Редактировать</button>
-                    <button class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
         </div>
@@ -109,13 +109,28 @@
                 <span class="fs-3 pb-2">Инвестиции</span>
                 <div class="actions pb-4">
                     <button class="btn btn-primary me-2">Редактировать</button>
-                    <button class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
         </div>
         <div class="categories-block btn border rounded-4 d-flex align-items-center justify-content-center"><i class="fa-solid fa-plus text-secondary"></i></div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="openModalIncomeDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body px-4 pt-4 fs-6 text-center">
+                Вы действительно хотите удалить категорию?<br> Связанные доходы будут удалены навсегда.
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-success">Да, удалить</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="../scripts/script.js"></script>
 </body>

@@ -1,16 +1,20 @@
 @import "common.css";
 
-.dashboard {
+.categories {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
 }
 
-.dashboard-title {
+.categories-title {
     color: #052C65;
 }
 
-.categories-item {
+.categories-block {
     width: 352px;
-    min-height: 121px;
+    height: 121px;
+}
+
+.categories-block .btn {
+
 }

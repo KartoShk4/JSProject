@@ -1,0 +1,16 @@
+@import "common.css";
+
+.dashboard {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.dashboard-title {
+    color: #052C65;
+}
+
+.categories-item {
+    width: 352px;
+    min-height: 121px;
+}

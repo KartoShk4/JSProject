@@ -16,13 +16,6 @@
     font-style: normal;
 }
 
-/*.nav .btn {*/
-/*    font-size: 14px;*/
-/*    width: 178px;*/
-/*    padding: 9px 10px 8px 10px;*/
-/*    font-family: Roboto-light, sans-serif;*/
-/*}*/
-
 .nav .btn:hover {
     background-color: #0d6efd;
     color: white;

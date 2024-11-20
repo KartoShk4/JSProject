@@ -1,2 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
+.categories-title {
+    color: #052C65;
+}
+
+.categories-block {
+    width: 352px;
+    height: 121px;
+}
+
+.createInput {
+    width: 397px;
+}

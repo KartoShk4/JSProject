@@ -1,4 +1,4 @@
-
+@import "common.css";
 
 .layout {
     max-width: 219px;
@@ -11,7 +11,9 @@
     font-size: 14px;
     width: 178px;
     padding: 9px 10px 8px 10px;
-    font-family: Roboto-light, sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 /*.nav .btn {*/

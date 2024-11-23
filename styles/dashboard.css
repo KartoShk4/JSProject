@@ -1,30 +1,5 @@
 @import "common.css";
 
-.dashboard {
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-}
-
-.dashboard-title {
-    color: #052C65;
-}
-
-.dashboard-filters {
-    display: flex;
-    gap: 20px;
-}
-
-.dashboard-filters .btn {
-    width: 100px;
-    height: 37px;
-}
-
-.dashboard-filters .btn:hover {
-    background-color: #6C757D;
-    color: white !important;
-}
-
 .schedule {
     display: flex;
     height: 467px;

@@ -7,15 +7,6 @@
     align-items: flex-start;
 }
 
-.layout {
-    width: 25%;
-    flex-shrink: 0;
-}
-
-.section {
-    flex: 1;
-    padding: 30px;
-}
 
 .table-header {
     border-top: 1px solid #DEE2E6;

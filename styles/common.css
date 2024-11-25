@@ -20,6 +20,15 @@
     height: 37px;
 }
 
+.layout {
+    width: 25%;
+    flex-shrink: 0;
+}
+.section {
+    flex: 1;
+    padding: 30px;
+}
+
 .filters .btn:hover {
     background-color: #6C757D;
     color: white !important;

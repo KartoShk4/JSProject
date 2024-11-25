@@ -1,5 +1,12 @@
 @import "common.css";
 
+.container-sections {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
 .schedule {
     display: flex;
     height: 467px;

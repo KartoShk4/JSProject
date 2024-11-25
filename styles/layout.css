@@ -14,6 +14,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
+    color: #052C65;
 }
 
 .nav .btn:hover {
@@ -21,10 +22,27 @@
     color: white;
 }
 
-.nav .btn:first-child:active {
+.nav .btn:focus {
     background-color: #0d6efd;
     color: white;
 }
+
+.nav .btn:first-child:active {
+    background-color: #0d6efd;
+    color: white;
+
+}
+
+.border-radius-bottom {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-toggle-nav > li > a:hover {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
 
 .balance-link {
     color: #052C65;
@@ -57,4 +75,19 @@
     min-height: 1em;
     background-color: currentcolor;
     opacity: .25;
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.dropdown-item.btn {
+    border-radius: 5px;
+}
+
+.dropdown-item.btn:hover {
+    background-color: #0D6EFD;
+    border-radius: 5px;
+    color: white;
 }

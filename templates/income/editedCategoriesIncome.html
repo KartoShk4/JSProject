@@ -15,7 +15,7 @@
     <div class="vr"></div>
     <div class="d-flex flex-column flex-shrink-0" style="width: 219px;">
         <a href="#" class="d-flex flex-column align-items-center pt-4 pb-2">
-            <img src="../../assets/images/logo.png" width="98" height="40" alt="finance-logo">
+            <img src="/assets/images/logo.png" width="98" height="40" alt="finance-logo">
         </a>
         <hr>
         <ul class="nav nav-pills flex-column align-items-center mb-auto pt-4">
@@ -29,9 +29,7 @@
                 </a>
             </li>
             <li>
-                <button class="btn btn-toggle d-inline-flex align-items-center border-0 justify-content-between"
-                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">Категории<i
-                        class="fa-solid fa-chevron-right ms-5"></i></button>
+                <button class="btn btn-toggle d-inline-flex align-items-center border-0 justify-content-between" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">Категории<i class="fa-solid fa-chevron-right ms-5"></i></button>
                 <div class="collapse" id="home-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                         <li><a href="#" class="btn d-inline-flex rounded">Доходы</a></li>
@@ -41,8 +39,7 @@
             </li>
         </ul>
         <div class="balance ps-3">
-            <p><a class="balance-link nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Баланс:
-                <span class="balance-item ps-1" id="balance">500$</span></a></p>
+            <p><a class="balance-link nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Баланс: <span class="balance-item ps-1" id="balance">500$</span></a></p>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -52,8 +49,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control" aria-label="Small"
-                               aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
@@ -66,11 +62,11 @@
         <div class="dropdown ps-3 pb-4">
             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../../assets/images/user.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
+                <img src="/assets/images/user.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
                 <strong class="ps-2">user</strong>
             </a>
-            <ul class="dropdown-menu text-small shadow" style="">
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item btn" href="#">Sign out</a></li>
             </ul>
         </div>
     </div>
@@ -85,7 +81,7 @@
                placeholder="Название...">
         <div class="createInputButton pt-3">
             <button type="button" class="btn btn-success me-2">Сохранить</button>
-            <button type="button" class="btn btn-danger">Отмена</button>
+            <a href="income.html" type="button" class="btn btn-danger">Отмена</a>
         </div>
     </div>
 </section>

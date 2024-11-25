@@ -1,0 +1,44 @@
+/* SIGN-UP Размер экрана 425 и меньше */
+@media (max-width: 425px) {
+    .form {
+        width: 350px;
+    }
+
+    .btn {
+        width: 350px;
+    }
+
+    .login {
+        font-size: 13px;
+    }
+}
+
+/* SIGN-UP Размер экрана 375 и меньше */
+@media (max-width: 375px) {
+    .form {
+        width: 340px;
+    }
+
+    .btn {
+        width: 340px;
+    }
+
+    .login {
+        font-size: 13px;
+    }
+}
+
+/* SIGN-UP Размер экрана 320 и меньше */
+@media (max-width: 320px) {
+    .form {
+        width: 290px;
+    }
+
+    .btn {
+        width: 290px;
+    }
+
+    .login {
+        font-size: 13px;
+    }
+}

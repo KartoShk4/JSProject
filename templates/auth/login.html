@@ -11,32 +11,41 @@
 </head>
 
 <body>
-<main class="form-signin">
-    <form class="form d-flex flex-column align-items-center">
-        <img class="mb-5" src="../../assets/images/logo.png" alt="finance-logo">
-        <h1 class="form-title h3 mb-3 fw-bold fs-1">Вход</h1>
-        <div class="input-group pb-2">
-            <div class="input-group-text"><i class="far fa-envelope-open fa-lg"></i></div>
-            <input type="email" class="form-control form-input" id="floatingInput" placeholder="Электронная почта">
-            <label for="floatingInput"></label>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form class="form d-flex flex-column align-items-center">
+                <img class="mb-5" src="../../assets/images/logo.png" alt="finance-logo">
+                <h1 class="form-title h3 mb-3 fw-bold fs-1">Вход</h1>
+                <div class="input-group pb-2">
+                    <div class="input-group-text"><i class="far fa-envelope-open fa-lg"></i></div>
+                    <input type="email" class="form-control form-input" id="floatingInput"
+                           placeholder="Электронная почта">
+                    <label for="floatingInput"></label>
+                </div>
+                <div class="input-group pb-2">
+                    <div class="input-group-text"><i class="fa-solid fa-lock fa-lg"></i></div>
+                    <input type="password" class="form-control form-input" id="floatingPassword"
+                           placeholder="Пароль">
+                    <label for="floatingPassword"></label>
+                </div>
+                <div class="active">
+                    <div class="checkbox mb-3 mt-1 d-flex">
+                        <label>
+                            <input class="form-check-input me-2 float-start" type="checkbox"
+                                   value="remember-me"><span
+                                class="fs-6">Запомнить меня</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary mb-2" type="submit">Войти</button>
+                    <p class="sign-up">Еще нет аккаунта? <a href="sign-up.html" class="mx-2">Пройдите
+                        регистрацию</a>
+                    </p>
+                </div>
+            </form>
         </div>
-        <div class="input-group pb-2">
-            <div class="input-group-text"><i class="fa-solid fa-lock fa-lg"></i></div>
-            <input type="password" class="form-control form-input" id="floatingPassword" placeholder="Пароль">
-            <label for="floatingPassword"></label>
-        </div>
-        <div class="active">
-            <div class="checkbox mb-3 mt-1 d-flex">
-                <label>
-                    <input class="form-check-input me-2 float-start" type="checkbox" value="remember-me"><span
-                        class="fs-6">Запомнить меня</span>
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary mb-2" type="submit">Войти</button>
-            <p class="sign-up">Еще нет аккаунта? <a href="sign-up.html" class="mx-2">Пройдите регистрацию</a></p>
-        </div>
-    </form>
-</main>
+    </div>
+</div>
 <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

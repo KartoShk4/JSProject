@@ -37,6 +37,10 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {from: "./src/templates", to: "templates"},
+                {from: "./node_modules/@fortawesome/fontawesome-free/webfonts", to: "webfonts"},
+                {from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css", to: "css"},
+                {from: "./node_modules/bootstrap/dist/css/bootstrap.min.css", to: "css"},
+                {from: "./node_modules/bootstrap/dist/js/bootstrap.min.js", to: "js"},
             ],
         }),
     ],

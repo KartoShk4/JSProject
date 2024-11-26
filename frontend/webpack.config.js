@@ -21,6 +21,15 @@ module.exports = {
         // Так как сервер не находит файл на "сервере", он переводит на страницу index.html, который в свою очередь загружает скрипт app.js
         historyApiFallback: true,
     },
+    // SCSS правила
+    module: {
+        rules: [
+            {
+                test: /\.scss$/i,
+                use: ["style-loader", "css-loader", "sass-loader",],
+            },
+        ],
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'

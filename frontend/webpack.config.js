@@ -31,16 +31,20 @@ module.exports = {
         ],
     },
     plugins: [
+        // Плагин, который копирует именно наш index.html
         new HtmlWebpackPlugin({
             template: './index.html'
         }),
+        // Плагин, который копирует файлы в dist
         new CopyPlugin({
             patterns: [
                 {from: "./src/templates", to: "templates"},
+                {from: "./src/static/images", to: "images"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/webfonts", to: "webfonts"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css", to: "css"},
                 {from: "./node_modules/bootstrap/dist/css/bootstrap.min.css", to: "css"},
                 {from: "./node_modules/bootstrap/dist/js/bootstrap.min.js", to: "js"},
+                {from: "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", to: "js"},
             ],
         }),
     ],

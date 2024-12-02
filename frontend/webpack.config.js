@@ -10,10 +10,12 @@ module.exports = {
         // Генерируемый файл также называем app.js
         filename: 'app.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true, // Очищает папку dist перед новой сборкой
     },
     // Плагин сервера для разработки
     devServer: {
         static: {
+            // Папка со статикой
             directory: path.join(__dirname, 'public'),
         },
         compress: true,
@@ -25,8 +27,16 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/i,
-                use: ["style-loader", "css-loader", "sass-loader",],
+                test: /\.scss$/i, // SCSS обработка
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.css$/i, // CSS обработка
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg)$/, // Шрифты и изображения
+                type: 'asset/resource',
             },
         ],
     },
@@ -42,9 +52,9 @@ module.exports = {
                 {from: "./src/static/images", to: "images"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/webfonts", to: "webfonts"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css", to: "css"},
-                {from: "./node_modules/bootstrap/dist/css/bootstrap.min.css", to: "css"},
-                {from: "./node_modules/bootstrap/dist/js/bootstrap.min.js", to: "js"},
-                {from: "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", to: "js"},
+                // {from: "./node_modules/bootstrap/dist/css/bootstrap.min.css", to: "css"},
+                // {from: "./node_modules/bootstrap/dist/js/bootstrap.min.js", to: "js"},
+                // {from: "./node_modules/@popperjs/core/dist/umd/popper.js", to: "js"},
             ],
         }),
     ],

@@ -15,7 +15,8 @@ export class Router {
                 route: '/',
                 title: 'Главная',
                 filePathTemplate: '/templates/dashboard.html',
-                load:() => {
+                useLayout: '/templates/layout.html',
+                load: () => {
                     new Dashboard();
                 },
             },
@@ -23,7 +24,8 @@ export class Router {
                 route: '/login',
                 title: 'Авторизация',
                 filePathTemplate: '/templates/login.html',
-                load:() => {
+                useLayout: false,
+                load: () => {
                     new Login();
                 },
             },
@@ -31,7 +33,8 @@ export class Router {
                 route: '/sign-up',
                 title: 'Регистрация',
                 filePathTemplate: '/templates/sign-up.html',
-                load:() => {
+                useLayout: false,
+                load: () => {
                     new SignUp();
                 },
             },
@@ -57,11 +60,21 @@ export class Router {
                 // Если есть, то присваиваем странице нужный title
                 this.titlePageElement.innerText = newRoute.title;
             }
+
             // Проверяем у newRoute есть pathTemplate
             if (newRoute.filePathTemplate) {
-                // Если есть, то подставляем контент на нужную страницу.
-                this.contentPageElement.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
+                let contentBlock = this.contentPageElement;
+                // Если в нашем новом роуте есть useLayout (шаблон layout)
+                if (newRoute.useLayout) {
+                    // Если есть, то подставляем layout на страницу
+                    this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
+                    // Нашли на странице layout нужный нам id, куда будет подставляться весь контент.
+                    contentBlock = document.getElementById('contend-layout');
+                }
+                // Если pathTemplate есть, но нет useLayout, то подставляем контент на нужную страницу без layout.
+                contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
             }
+
             // Проверяем наличие cвойства load у newRoute, а так же проверяем что там имеется функция и файл не пустой.
             if (newRoute.load && typeof newRoute.load === 'function') {
                 // Если всё есть, то вызываем функцию нужной странице.
@@ -70,8 +83,7 @@ export class Router {
         } else {
             console.log('Такая страница не найдена');
             // Переводим пользователя на страницу авторизации в случае если страница не найдена
-            return window.location = '/login';
+            window.location = '/login';
         }
     }
-
 }

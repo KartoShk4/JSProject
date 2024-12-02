@@ -1,44 +1,52 @@
-<div class="container-sections">
-    <section class="section roboto-bold ps-5 pt-5">
-        <div class="title pb-5 pt-5">
-            <h1>Главная</h1>
+<div class="content-header pb-5 pt-5">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m0">Главная</h1>
+            </div>
         </div>
-        <div class="filters align-items-center pb-5">
-            <button class="btn border border-secondary text-secondary">Сегодня</button>
-            <button class="btn border border-secondary text-secondary">Неделя</button>
-            <button class="btn border border-secondary text-secondary">Месяц</button>
-            <button class="btn border border-secondary text-secondary">Год</button>
-            <button class="btn border border-secondary text-secondary">Все</button>
-            <button class="btn border border-secondary text-secondary">Интервал</button>
-
-            <div class="container mt-5">
-                <!-- Кнопка для тестирования Popper.js -->
-                <button id="button" class="btn btn-primary" aria-describedby="tooltip">Hover me</button>
-                <div id="tooltip" role="tooltip" class="tooltip bs-tooltip-top">
-                    Tooltip content
-                    <div id="arrow" data-popper-arrow></div>
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <div class="filters d-flex gap-4 align-items-center">
+                    <button class="btn border border-secondary text-secondary">Сегодня</button>
+                    <button class="btn border border-secondary text-secondary">Неделя</button>
+                    <button class="btn border border-secondary text-secondary">Месяц</button>
+                    <button class="btn border border-secondary text-secondary">Год</button>
+                    <button class="btn border border-secondary text-secondary">Все</button>
+                    <button class="btn border border-secondary text-secondary">Интервал</button>
                 </div>
             </div>
-
-            <div class="filters-interval">
-                <span class="pe-2">с</span> <a href="javascript:void(0);" class="pe-2 link-secondary">Дата</a> <span
-                    class="pe-2">по</span> <a href="javascript:void(0);" class="pe-2  link-secondary">Дата</a>
+            <div class="col-auto">
+                <div class="filters-interval">
+                    <span class="pe-2">с</span> <a href="javascript:void(0);" class="pe-2 link-secondary">Дата</a>
+                    <span class="pe-2">по</span> <a href="javascript:void(0);" class="pe-2  link-secondary">Дата</a>
+                </div>
             </div>
         </div>
-        <div class="schedule pt-5 px-5">
-            <div class="schedule income d-flex flex-column pe-5">
-                <div class="schedule-title fs-3 text-center pb-3">Доходы</div>
-                <!--            TEST IMAGE-->
-                <img src="/images/Pie%20Legend.png" alt="TEST" width="437">
-                <img src="/images/Group.png" alt="TEST" width="360" height="360">
-            </div>
-            <div class="vr-schedule ms-5 me-5"></div>
-            <div class="schedule expenses d-flex flex-column ps-5">
-                <div class="schedule-title fs-3 text-center pb-3">Расходы</div>
-                <!--            TEST IMAGE-->
-                <img src="/images/Pie%20Legend.png" alt="TEST" width="437">
-                <img src="/images/Group.png" alt="TEST" width="360" height="360">
+        <div class="row">
+            <div class="col">
+                <div class="schedule d-flex">
+                    <div class="schedule income d-flex flex-column pe-5">
+                        <div class="schedule-title fs-3 text-center pb-3">Доходы</div>
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="vr-schedule ms-5 me-5"></div>
+                    <div class="schedule expenses d-flex flex-column ps-5">
+                        <div class="schedule-title fs-3 text-center pb-3">Расходы</div>
+                        <!--            TEST IMAGE-->
+                        <img src="/images/Pie%20Legend.png" alt="TEST" width="437">
+                        <img src="/images/Group.png" alt="TEST" width="360" height="360">
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
+
+

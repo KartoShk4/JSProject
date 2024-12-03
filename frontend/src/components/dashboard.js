@@ -10,15 +10,45 @@ export class Dashboard {
         // Регистрация контроллеров и элементов диаграммы
         Chart.register(PieController, ArcElement, Tooltip, Legend);
 
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChartIncomeCanvas = document.getElementById('myChartIncome').getContext('2d');
+        const myChartExpensesCanvas = document.getElementById('myChartExpenses').getContext('2d');
 
-        const myChart = new Chart(ctx, {
+        const myChartIncome = new Chart(myChartIncomeCanvas, {
             type: 'pie', // Тип диаграммы (круговая)
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
                 datasets: [{
                     // label: '# of Votes',
                     data: [300, 50, 100, 20, 80],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(0, 255, 0)',
+                        'rgb(255, 165, 0)',
+                    ],
+                    hoverOffset: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+        const myChartExpenses = new Chart(myChartExpensesCanvas, {
+            type: 'pie', // Тип диаграммы (круговая)
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
+                datasets: [{
+                    // label: '# of Votes',
+                    data: [20, 50, 90, 92, 80],
                     backgroundColor: [
                         'rgb(255, 99, 132)',
                         'rgb(54, 162, 235)',

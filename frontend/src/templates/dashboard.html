@@ -9,7 +9,7 @@
 </div>
 <div class="content">
     <div class="container-fluid">
-        <div class="row align-items-center">
+        <div class="row align-items-center pb-5">
             <div class="col-auto">
                 <div class="filters d-flex gap-4 align-items-center">
                     <button class="btn border border-secondary text-secondary">Сегодня</button>
@@ -27,21 +27,21 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row pt-5">
             <div class="col">
                 <div class="schedule d-flex">
                     <div class="schedule income d-flex flex-column pe-5">
                         <div class="schedule-title fs-3 text-center pb-3">Доходы</div>
-                        <div>
-                            <canvas id="myChart"></canvas>
+                        <div class="chart">
+                            <canvas id="myChartIncome"></canvas>
                         </div>
                     </div>
                     <div class="vr-schedule ms-5 me-5"></div>
                     <div class="schedule expenses d-flex flex-column ps-5">
                         <div class="schedule-title fs-3 text-center pb-3">Расходы</div>
-                        <!--            TEST IMAGE-->
-                        <img src="/images/Pie%20Legend.png" alt="TEST" width="437">
-                        <img src="/images/Group.png" alt="TEST" width="360" height="360">
+                        <div class="chart">
+                            <canvas id="myChartExpenses"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

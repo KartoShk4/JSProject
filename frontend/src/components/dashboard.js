@@ -1,5 +1,7 @@
 import {createPopper} from "@popperjs/core";
-import { Chart, ArcElement, Tooltip, Legend, PieController } from 'chart.js';
+import {Chart, ArcElement, Tooltip, Legend, PieController} from 'chart.js';
+import AirDatepicker from 'air-datepicker';
+
 
 export class Dashboard {
     constructor() {
@@ -71,6 +73,33 @@ export class Dashboard {
                 }
             }
         });
+
+        
+            let fromDatePickerInitialized = false;
+            let toDatePickerInitialized = false;
+
+            const fromInput = document.querySelector('#calendar-from');
+            const toInput = document.querySelector('#calendar-to');
+
+            fromInput.addEventListener('click', () => {
+                if (!fromDatePickerInitialized) {
+                    new AirDatepicker('#calendar-from', {
+                        autoClose: true,
+                    });
+                    fromDatePickerInitialized = true;
+                }
+            });
+
+            toInput.addEventListener('click', () => {
+                if (!toDatePickerInitialized) {
+                    new AirDatepicker('#calendar-to', {
+                        autoClose: true,
+                    });
+                    toDatePickerInitialized = true;
+                }
+            });
+
+
     }
 
 
@@ -114,4 +143,6 @@ export class Dashboard {
             tooltipElement.removeAttribute('data-show');
         });
     }
+
+
 }

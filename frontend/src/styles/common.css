@@ -26,20 +26,7 @@
     color: white !important;
 }
 
-.modal-header {
-    border-bottom: none;
-}
 
-.modal-footer {
-    border-top: none;
-}
-
-.modal-body {
-    color: #290661;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-}
 
 .categories-title {
     color: #052C65;

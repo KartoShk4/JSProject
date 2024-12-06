@@ -70,6 +70,13 @@ export class Router {
                     this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
                     // Нашли на странице layout нужный нам id, куда будет подставляться весь контент.
                     contentBlock = document.getElementById('contend-layout');
+                    // Для Layout (пока не используется)
+                    document.body.classList.add('sidebar-mini');
+                    document.body.classList.add('layout-fixed');
+                } else {
+                    // Для Layout (пока не используется)
+                    document.body.classList.remove('sidebar-mini');
+                    document.body.classList.remove('layout-fixed');
                 }
                 // Если pathTemplate есть, но нет useLayout, то подставляем контент на нужную страницу без layout.
                 contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());

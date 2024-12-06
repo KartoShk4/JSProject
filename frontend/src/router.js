@@ -46,9 +46,35 @@ export class Router {
         window.addEventListener('DOMContentLoaded', this.activateRoute.bind(this));
         // Вызываем функцию когда поменялся URL
         window.addEventListener('popstate', this.activateRoute.bind(this));
+        // Вызываем функцию по созданию нового роута вручную, в обход браузера
+        document.addEventListener('click', this.openNewRoute.bind(this));
     }
 
-    async activateRoute() {
+    async openNewRoute(e) {
+        // Проверка на ссылку
+        let element = null;
+        if (e.target.nodeName === 'A') {
+            element = e.target;
+        } else if (e.target.parentNode.nodeName === 'A') {
+            element = e.target.parentNode;
+        }
+
+        // Выполнили проверку на то что если ссылка является пустой или # или javascript:void(0), то мы её не обрабатываем.
+        if (element) {
+            e.preventDefault();
+            const url = element.href.replace(window.location.origin, '');
+            if (!url || url === '/#' || url.startsWith('javascript:void(0)')) {
+                return;
+            }
+            // Старый URL
+            const currentRoute = window.location.pathname;
+            // В историю браузера вручную добавили строку URL
+            history.pushState({}, '', url);
+            await this.activateRoute(null, currentRoute);
+        }
+    }
+
+    async activateRoute(e, oldRoute = null) {
         // Получили адрес сайта после хоста
         const urlRoute = window.location.pathname;
         // Определили на какой именно странице находится пользователь
@@ -90,7 +116,8 @@ export class Router {
         } else {
             console.log('Такая страница не найдена');
             // Переводим пользователя на страницу авторизации в случае если страница не найдена
-            window.location = '/login';
+            history.pushState({}, '', '/login');
+            await this.activateRoute();
         }
     }
 }

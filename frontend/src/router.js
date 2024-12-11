@@ -26,7 +26,7 @@ export class Router {
                 filePathTemplate: '/templates/login.html',
                 useLayout: false,
                 load: () => {
-                    new Login();
+                    new Login(this.openNewRoute.bind(this));
                 },
             },
             {
@@ -47,10 +47,18 @@ export class Router {
         // Вызываем функцию когда поменялся URL
         window.addEventListener('popstate', this.activateRoute.bind(this));
         // Вызываем функцию по созданию нового роута вручную, в обход браузера
-        document.addEventListener('click', this.openNewRoute.bind(this));
+        document.addEventListener('click', this.clickHandler.bind(this));
     }
 
-    async openNewRoute(e) {
+    async openNewRoute(url) {
+        // Взяли старый URl
+        const currentRoute = window.location.pathname;
+        // В историю браузера вручную поменяли на новый URL
+        history.pushState({}, '', url);
+        await this.activateRoute(null, currentRoute);
+    }
+
+    async clickHandler(e) {
         // Проверка на ссылку
         let element = null;
         if (e.target.nodeName === 'A') {
@@ -66,11 +74,7 @@ export class Router {
             if (!url || url === '/#' || url.startsWith('javascript:void(0)')) {
                 return;
             }
-            // Старый URL
-            const currentRoute = window.location.pathname;
-            // В историю браузера вручную добавили строку URL
-            history.pushState({}, '', url);
-            await this.activateRoute(null, currentRoute);
+            await this.openNewRoute(url);
         }
     }
 

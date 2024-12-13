@@ -7,6 +7,7 @@ export class Login {
         this.rememberMeElement = document.getElementById('remember-me');
         this.commonErrorElement = document.getElementById('common-error');
 
+        // Находим текст возможной ошибки при авторизации
         document.getElementById('process-button').addEventListener('click', this.login.bind(this));
     }
 
@@ -27,7 +28,6 @@ export class Login {
         return isValid;
     }
 
-
     async login() {
         // Скрываем ошибку в начале авторизации
         this.commonErrorElement.style.display = 'none';
@@ -45,18 +45,22 @@ export class Login {
                     rememberMe: this.rememberMeElement.checked
                 })
             });
+
+            // Получаем токены из ответа
             const result = await response.json();
 
-            if (!result.tokens?.accessToken || !result.tokens?.refreshToken || !result.user?.id || !result.user?.name || !result.user?.lastName) {
+            if (!result.tokens || !result.tokens.accessToken || !result.tokens.refreshToken ||
+                !result.user || !result.user.id || !result.user.name || !result.user.lastName) {
                 this.commonErrorElement.style.display = 'block';
                 return;
             }
 
             // Сохраняем данные в localStorage
+            const { accessToken, refreshToken } = result.tokens;
             const userInfo = {
                 id: result.user.id,
                 name: result.user.name,
-                lastName: result.user.lastName
+                lastName: result.user.lastName,
             };
 
             // Повторно скрываем ошибку при успешной авторизации

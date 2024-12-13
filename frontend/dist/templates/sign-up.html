@@ -4,34 +4,39 @@
             <form class="form d-flex flex-column align-items-center">
                 <img class="mb-5" src="/images/logo.png" alt="finance-logo">
                 <h1 class="form-title h3 mb-3 fs-1">Создайте аккаунт</h1>
+                <span id="common-error" class="error invalid-feedback text-center mb-3">Не удалось зарегистрировать пользователя. Обратитесь в поддержку.</span>
                 <div class="input-group pb-2">
                     <div class="input-group-text"><i class="far fa-user fa-lg"></i></div>
-                    <input type="email" class="form-control form-input" id="input-name" placeholder="ФИО">
-                    <label for="input-name"></label>
+                    <label for="full-name"></label>
+                    <input type="text" class="form-control form-input" id="full-name" placeholder="ФИО">
+                    <span id="full-name-error" class="error invalid-feedback">Заполните ФИО</span>
                 </div>
                 <div class="input-group pb-2">
                     <div class="input-group-text"><i class="far fa-envelope-open fa-lg"></i></div>
-                    <input type="email" class="form-control form-input" id="input-email"
+                    <label for="email"></label>
+                    <input type="email" class="form-control form-input" id="email"
                            placeholder="Электронная почта">
-                    <label for="input-email"></label>
+                    <span id="email-error" class="error invalid-feedback">Заполните E-mail</span>
                 </div>
                 <div class="input-group pb-2">
                     <div class="input-group-text"><i class="fas fa-lock fa-lg"></i></div>
-                    <input type="password" class="form-control form-input" id="input-password" placeholder="Пароль">
-                    <label for="input-password"></label>
+                    <label for="password"></label>
+                    <input type="password" class="form-control form-input" id="password" placeholder="Пароль">
+                    <span id="password-error" class="error invalid-feedback">Введите пароль</span>
                 </div>
                 <div class="input-group pb-4">
                     <div class="input-group-text"><i class="fa-solid fa-lock fa-lg"></i></div>
-                    <input type="password" class="form-control form-input" id="input-repeat-password"
+                    <label for="password-repeat"></label>
+                    <input type="password" class="form-control form-input" id="password-repeat"
                            placeholder="Подтверждение пароля">
-                    <label for="input-repeat-password"></label>
+                    <span id="repeat-password-error" class="error invalid-feedback">Пароли не совпадают</span>
                 </div>
                 <div class="active w-100">
-                    <button class="btn btn-lg btn-primary mb-2 w-100" type="submit">Войти</button>
-                    <p class="account">Уже есть аккаунт? <a href="/login" class="mx-2 account-link">Войдите в систему</a></p>
+                    <button class="btn btn-lg btn-primary mb-2 w-100" type="button" id="process-button">Войти</button>
+                    <p class="account">Уже есть аккаунт? <a href="/login" class="mx-2 account-link">Войдите в
+                        систему</a></p>
                 </div>
             </form>
-            </main>
         </div>
     </div>
 </div>

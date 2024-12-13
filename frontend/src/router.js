@@ -35,7 +35,7 @@ export class Router {
                 filePathTemplate: '/templates/sign-up.html',
                 useLayout: false,
                 load: () => {
-                    new SignUp();
+                    new SignUp(this.openNewRoute.bind(this));
                 },
             },
         ];
@@ -121,7 +121,7 @@ export class Router {
             console.log('Такая страница не найдена');
             // Переводим пользователя на страницу авторизации в случае если страница не найдена
             history.pushState({}, '', '/login');
-            await this.activateRoute();
+            await this.activateRoute(e);
         }
     }
 }

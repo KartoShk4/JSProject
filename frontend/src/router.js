@@ -1,6 +1,16 @@
 import {Dashboard} from "./components/dashboard";
 import {Login} from "./components/login";
 import {SignUp} from "./components/sign-up";
+import {IncomeAndExpenses} from "./components/incomeAndExpenses";
+import {EditedIncomeAndExpenses} from "./components/editedIncomeAndExpenses";
+import {CreateIncomeAndExpenses} from "./components/createIncomeAndExpenses";
+import {Income} from "./components/income";
+import {EditedCategoriesIncome} from "./components/editedCategoriesIncome";
+import {CreateCategoriesIncome} from "./components/createCategoriesIncome";
+import {Expenses} from "./components/expenses";
+import {EditedCategoriesExpenses} from "./components/editedCategoriesExpenses";
+import {CreateCategoriesExpenses} from "./components/createCategoriesExpenses";
+import {Logout} from "./components/logout";
 
 export class Router {
     constructor() {
@@ -10,6 +20,7 @@ export class Router {
 
         // Вызываем функцию, для удобства перенесли её из конструктора.
         this.initEvents();
+
         this.routes = [
             {
                 route: '/',
@@ -38,6 +49,93 @@ export class Router {
                     new SignUp(this.openNewRoute.bind(this));
                 },
             },
+            {
+                route: '/income-and-expenses',
+                title: 'Доходы & Расходы',
+                filePathTemplate: '/templates/incomeAndExpenses/incomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new IncomeAndExpenses();
+                },
+            },
+            {
+                route: '/edited-income-and-expenses',
+                title: 'Редактирование доходов & расходов',
+                filePathTemplate: '/templates/incomeAndExpenses/editedIncomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedIncomeAndExpenses();
+                },
+            },
+            {
+                route: '/create-income-and-expenses',
+                title: 'Создание доходов & расходов',
+                filePathTemplate: '/templates/incomeAndExpenses/createIncomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateIncomeAndExpenses();
+                },
+            },
+            {
+                route: '/income',
+                title: 'Доходы',
+                filePathTemplate: '/templates/income/income.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new Income();
+                },
+            },
+            {
+                route: '/edited-categories-income',
+                title: 'Редактирование доходов',
+                filePathTemplate: '/templates/income/editedCategoriesIncome.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedCategoriesIncome();
+                },
+            },
+            {
+                route: '/create-categories-income',
+                title: 'Создание доходов',
+                filePathTemplate: '/templates/income/createCategoriesIncome.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateCategoriesIncome();
+                },
+            },
+            {
+                route: '/expenses',
+                title: 'Расходы',
+                filePathTemplate: '/templates/expenses/expenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new Expenses();
+                },
+            },
+            {
+                route: '/edited-categories-expenses',
+                title: 'Редактирование расходов',
+                filePathTemplate: '/templates/expenses/editedCategoriesExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedCategoriesExpenses();
+                },
+            },
+            {
+                route: '/create-categories-expenses',
+                title: 'Создание расходов',
+                filePathTemplate: '/templates/expenses/createCategoriesExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateCategoriesExpenses();
+                },
+            },
+            {
+                route: '/logout',
+                load: () => {
+                    new Logout(this.openNewRoute.bind(this));
+                }
+            }
         ];
     }
 

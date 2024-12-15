@@ -1,77 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Расходы</title>
-    <link rel="stylesheet" href="../../../assets/fontawesome/css/all.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../styles/common.css">
-    <link rel="stylesheet" href="../../styles/layout.css">
-</head>
-<body class="d-flex">
-<section class="layout d-flex justify-content-between">
-    <div class="vr"></div>
-    <div class="d-flex flex-column flex-shrink-0" style="width: 219px;">
-        <a href="#" class="d-flex flex-column align-items-center pt-4 pb-2">
-            <img src="/assets/images/logo.png" width="98" height="40" alt="finance-logo">
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column align-items-center mb-auto pt-4">
-            <li class="nav-item">
-                <a href="../dashboard.html" class="btn"><i class="fa-solid fa-house px-2"></i>Главная</a>
-            </li>
-            <li>
-                <a href="#" class="btn">
-                    <i class="fa-solid fa-money-bill px-2"></i>
-                    Доходы & Расходы
-                </a>
-            </li>
-            <li>
-                <button class="btn btn-toggle d-inline-flex align-items-center border-0 justify-content-between" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">Категории<i class="fa-solid fa-chevron-right ms-5"></i></button>
-                <div class="collapse" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-                        <li><a href="#" class="btn d-inline-flex rounded">Доходы</a></li>
-                        <li><a href="#" class="btn d-inline-flex rounded">Расходы</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-        <div class="balance ps-3">
-            <p><a class="balance-link nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Баланс: <span class="balance-item ps-1" id="balance">500$</span></a></p>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Введите сумму</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Сохранить</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="dropdown ps-3 pb-4">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-               data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/assets/images/user.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
-                <strong class="ps-2">user</strong>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item btn" href="#">Sign out</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
-
 <section class="categories ps-5 pt-5">
     <div class="categories-title pb-4 pt-5">
         <h1>Расходы</h1>
@@ -81,7 +7,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Еда</span>
                 <div class="actions pb-4">
-                    <a href="editedCategoriesExpenses.html" type="button" class="btn btn-primary me-2">Редактировать</a>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete" class="btn btn-danger">Удалить</button>
                 </div>
             </div>
@@ -90,7 +16,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Жильё</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -99,7 +25,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Здоровье</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -108,7 +34,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Кафе</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -117,7 +43,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Авто</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -126,7 +52,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Одежда</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -135,7 +61,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Развлечения</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -144,7 +70,7 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Счета</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
@@ -153,12 +79,13 @@
             <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
                 <span class="fs-3 pb-2">Спорт</span>
                 <div class="actions pb-4">
-                    <button class="btn btn-primary me-2">Редактировать</button>
+                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
                 </div>
             </div>
         </div>
-        <a href="createCategoriesExpenses.html" class="categories-block btn border rounded-4 d-flex align-items-center justify-content-center"><i class="fa-solid fa-plus text-secondary"></i></a>
+        <a href="/create-categories-expenses" class="categories-block btn border rounded-4 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-plus text-secondary"></i></a>
     </div>
 </section>
 
@@ -176,7 +103,3 @@
         </div>
     </div>
 </div>
-
-<script src="../../scripts/script.js"></script>
-</body>
-</html>

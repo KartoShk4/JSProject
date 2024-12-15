@@ -4,6 +4,7 @@ $color-blue: #052C65;
 $color-light-blue: #0D6EFD;
 $color-white: #FFFFFF;
 $color-gray: #6C757D;
+$color-light-gray: #DEE2E6;
 
 // MIXINS
 @mixin filter-btn-active {
@@ -33,6 +34,8 @@ $color-gray: #6C757D;
   height: 100vh;
 
   .form {
+    width: 397px;
+
     .form-title {
       color: $color-blue;
     }
@@ -186,6 +189,7 @@ $color-gray: #6C757D;
 
   .content {
     padding-left: 60px;
+    padding-right: 60px;
 
     .filters {
       .btn {
@@ -231,4 +235,45 @@ $color-gray: #6C757D;
   }
 }
 
+// INCOME-AND-EXPENSES
+.title {
+  color: $color-blue;
+}
+
+.table-block {
+  .table {
+    .table-header {
+      border-top: 1px solid $color-light-gray;
+    }
+    .headline-number {
+      width: 150px;
+    }
+    .thead-color {
+      color: $color-blue;
+    }
+  }
+}
+
+
+
+.table-icon-cell {
+  width: 10px;
+  cursor: pointer;
+}
+
+.btn-trash:active {
+  //border: transparent;
+}
+
+.income-green {
+  color: green !important;
+}
+
+.expenses-red {
+  color: red !important;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
 

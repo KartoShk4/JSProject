@@ -2,6 +2,12 @@ export class SignUp {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
+        // Выполняем проверку на наличии токена, если он есть
+        if (localStorage.getItem('accessToken')) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/');
+        }
+
         this.fullNameElement = document.getElementById('full-name');
         this.emailElement = document.getElementById('email');
         this.passwordElement = document.getElementById('password');
@@ -71,15 +77,13 @@ export class SignUp {
             });
 
             const result = await response.json();
-            console.log(result);
 
             if (result.error || !result.id || !result.name) {
                 this.commonErrorElement.style.display = 'block';
             }
 
             // Сохраняем данные в localStorage
-            const userInfo = {id: result.user.id, email: result.user.email, name: result.user.name, lastName: result.user.lastName
-            };
+            const userInfo = {id: result.user.id, email: result.user.email, name: result.user.name, lastName: result.user.lastName};
 
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';

@@ -2,6 +2,12 @@ export class Login {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
+        // Выполняем проверку на наличии токена, если он есть
+        if (localStorage.getItem('accessToken')) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/');
+        }
+
         this.emailElement = document.getElementById('email');
         this.passwordElement = document.getElementById('password');
         this.rememberMeElement = document.getElementById('remember-me');
@@ -49,6 +55,7 @@ export class Login {
             // Получаем токены из ответа
             const result = await response.json();
 
+            // Делаем проверку на то, есть ли эти данные, если нет то выводим ошибку.
             if (!result.tokens || !result.tokens.accessToken || !result.tokens.refreshToken ||
                 !result.user || !result.user.id || !result.user.name || !result.user.lastName) {
                 this.commonErrorElement.style.display = 'block';
@@ -56,7 +63,7 @@ export class Login {
             }
 
             // Сохраняем данные в localStorage
-            const { accessToken, refreshToken } = result.tokens;
+            const {accessToken, refreshToken} = result.tokens;
             const userInfo = {
                 id: result.user.id,
                 name: result.user.name,

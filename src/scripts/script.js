@@ -1,3 +1,4 @@
+// Функционал отвечающий за поворот стрелки
 document.addEventListener('click', (event) => {
     // Проверяем, кликнули ли по кнопке
     const dropdownToggle = event.target.closest('#btn-action');
@@ -9,3 +10,8 @@ document.addEventListener('click', (event) => {
         }
     }
 });
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+    });
+}

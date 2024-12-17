@@ -1,9 +1,11 @@
+import {AuthUtils} from "../../utils/auth-utils";
+
 export class Login {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
         // Выполняем проверку на наличии токена, если он есть
-        if (localStorage.getItem('accessToken')) {
+        if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
             // Переводим пользователя на главную страницу
             return openNewRoute('/');
         }
@@ -64,18 +66,11 @@ export class Login {
 
             // Сохраняем данные в localStorage
             const {accessToken, refreshToken} = result.tokens;
-            const userInfo = {
-                id: result.user.id,
-                name: result.user.name,
-                lastName: result.user.lastName,
-            };
 
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';
 
-            localStorage.setItem('accessToken', result.tokens.accessToken);
-            localStorage.setItem('refreshToken', result.tokens.refreshToken);
-            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            AuthUtils.setAuthInfo(result.tokens.accessToken, result.tokens.refreshToken, {id: result.user.id, name: result.user.name, lastName: result.user.lastName});
 
             // После успешной валидации и проверки, переводим пользователя на главную страницу.
             this.openNewRoute('/');

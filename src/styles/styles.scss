@@ -152,6 +152,9 @@ $color-light-gray: #DEE2E6;
     }
   }
 
+  .dropdown-user {
+    cursor: pointer;
+  }
 
   .vr {
     height: 100vh;
@@ -210,6 +213,7 @@ $color-light-gray: #DEE2E6;
         width: 100px;
         padding-left: 8px;
       }
+
       .input-calendar {
         &:focus-visible {
           outline: none;

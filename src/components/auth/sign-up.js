@@ -1,9 +1,11 @@
+import {AuthUtils} from "../../utils/auth-utils";
+
 export class SignUp {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
         // Выполняем проверку на наличии токена, если он есть
-        if (localStorage.getItem('accessToken')) {
+        if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
             // Переводим пользователя на главную страницу
             return openNewRoute('/');
         }
@@ -88,9 +90,9 @@ export class SignUp {
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';
 
-            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            localStorage.setItem(AuthUtils.userInfoTokenKey, JSON.stringify(userInfo));
 
-            // После успешной валидации и проверки, переводим пользователя на главную страницу.
+            // После успешной валидации и проверки, переводим пользователя на страницу входа.
             this.openNewRoute('/login');
         }
     }

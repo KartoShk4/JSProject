@@ -1,4 +1,5 @@
 import {AuthUtils} from "../../utils/auth-utils";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class Login {
     constructor(openNewRoute) {
@@ -41,36 +42,27 @@ export class Login {
         this.commonErrorElement.style.display = 'none';
         // Выполняем запрос авторизации
         if (this.validateForm()) {
-            const response = await fetch('http://localhost:3000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: this.emailElement.value,
-                    password: this.passwordElement.value,
-                    rememberMe: this.rememberMeElement.checked
-                })
+            const result = await HttpUtils.request('/login', 'POST', {
+                email: this.emailElement.value,
+                password: this.passwordElement.value,
+                rememberMe: this.rememberMeElement.checked
             });
 
-            // Получаем токены из ответа
-            const result = await response.json();
-
             // Делаем проверку на то, есть ли эти данные, если нет то выводим ошибку.
-            if (!result.tokens || !result.tokens.accessToken || !result.tokens.refreshToken ||
-                !result.user || !result.user.id || !result.user.name || !result.user.lastName) {
+            if (result.error || !result.response || (result.response && (!result.response.tokens.accessToken || !result.response.tokens.refreshToken ||
+                !result.response.user || !result.response.user.id || !result.response.user.name || !result.response.user.lastName))) {
                 this.commonErrorElement.style.display = 'block';
                 return;
             }
 
-            // Сохраняем данные в localStorage
-            const {accessToken, refreshToken} = result.tokens;
-
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';
 
-            AuthUtils.setAuthInfo(result.tokens.accessToken, result.tokens.refreshToken, {id: result.user.id, name: result.user.name, lastName: result.user.lastName});
+            AuthUtils.setAuthInfo(result.response.tokens.accessToken, result.response.tokens.refreshToken, {
+                id: result.response.user.id,
+                name: result.response.user.name,
+                lastName: result.response.user.lastName
+            });
 
             // После успешной валидации и проверки, переводим пользователя на главную страницу.
             this.openNewRoute('/');

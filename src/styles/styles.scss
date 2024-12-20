@@ -280,3 +280,18 @@ $color-light-gray: #DEE2E6;
   }
 }
 
+// INCOME
+.income {
+  .categories-title {
+    color: $color-blue;
+  }
+
+  .categories-item {
+    width: 352px;
+    height: 121px;
+  }
+
+  .category-title {
+    color: $color-blue;
+  }
+}

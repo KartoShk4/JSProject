@@ -29,6 +29,7 @@ export class CreateCategoriesIncome {
         });
 
 
+
         // Если в ответе есть редирект, вызываем openNewRoute
         if (result.redirect) {
             return this.openNewRoute(result.redirect);

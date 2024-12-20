@@ -64,7 +64,7 @@ export class SignUp {
         this.commonErrorElement.style.display = 'none';
         // Выполняем запрос авторизации
         if (this.validateForm()) {
-            const result = await HttpUtils.request('/signup', 'POST', {
+            const result = await HttpUtils.request('/signup', 'POST', false , {
                 name: this.fullNameElement.value.split(' ')[0],
                 lastName: this.fullNameElement.value.split(' ')[1],
                 email: this.emailElement.value,

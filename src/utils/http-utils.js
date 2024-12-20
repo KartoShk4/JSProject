@@ -1,12 +1,14 @@
 import config from "../config/config";
-import ca from "air-datepicker/locale/ca";
+import {AuthUtils} from "./auth-utils";
 
 export class HttpUtils {
-    static async request(url, method = 'GET', body = null) {
+    // Используем useAuth только в том случае если нам нужен токен
+    static async request(url, method = 'GET', useAuth = true, body = null) {
         const result = {
             error: false,
             response: null
-        }
+        };
+
         const params = {
             method: method,
             headers: {
@@ -14,6 +16,17 @@ export class HttpUtils {
                 'Accept': 'application/json',
             },
         };
+
+        let token = null;
+        if (useAuth) {
+            // Получили токен, нужен в случае запроса данных с сервера, используем его в "headers"
+            let token = AuthUtils.getAuthInfo(AuthUtils.accessTokenKey);
+            if (token) {
+                params.headers = params.headers || {};
+                params.headers['x-auth-token'] = token;
+            }
+        }
+
         if (body) {
             params.body = JSON.stringify(body);
         }
@@ -30,6 +43,13 @@ export class HttpUtils {
 
         if (response.status < 200 || response.status >= 300) {
             result.error = true;
+            if (useAuth && response.status === 401) {
+                // 1 - токена нет
+                if (!token) {
+                    result.redirect = '/login';
+                }
+            }
+            // 2 - токен устарел(нужно обновить)
         }
         return result;
     }

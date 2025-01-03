@@ -91,7 +91,7 @@ export class Router {
                 filePathTemplate: '/templates/income/editedCategoriesIncome.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new EditedCategoriesIncome();
+                    new EditedCategoriesIncome(this.openNewRoute.bind(this));
                 },
             },
             {

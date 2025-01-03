@@ -1,4 +1,4 @@
-import { HttpUtils } from "../../utils/http-utils";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class Income {
     constructor(openNewRoute) {
@@ -21,14 +21,8 @@ export class Income {
 
         // Проверяем наличие ошибки и выводим сообщение
         if (result.error) {
-            console.error('Ошибка при получении категорий доходов:', result);
+            console.warn('Ошибка при получении категорий доходов:', result);
             alert('Возникла ошибка при запросе категорий доходов. Пожалуйста, обратитесь в поддержку!');
-            return;
-        }
-
-        // Проверка, что ответ не пустой
-        if (!result.response || result.response.length === 0) {
-            console.warn('Получен пустой массив категорий доходов');
             return;
         }
 
@@ -43,7 +37,8 @@ export class Income {
     showRecords(records) {
         // Проходим по каждому элементу в полученных данных
         records.forEach(record => {
-            // Получаем название категории
+            // Получаем id и название категории
+            const categoryId = record.id;
             const categoryTitle = record.title;
 
             // Создаем блок категории
@@ -61,7 +56,7 @@ export class Income {
 
             // Добавляем кнопку "Редактировать"
             const btnEdit = document.createElement('a');
-            btnEdit.href = '/edited-categories-income';
+            btnEdit.href = `/edited-categories-income?id=${categoryId}`;
             btnEdit.classList.add('btn', 'btn-primary', 'me-2');
             btnEdit.textContent = 'Редактировать';
 
@@ -87,7 +82,7 @@ export class Income {
             categoryBlock.appendChild(categoryItem);
 
             // Добавляем блок в контейнер
-           this.categoriesContainer.appendChild(categoryBlock);
+            this.categoriesContainer.appendChild(categoryBlock);
         });
 
         // Добавляем кнопку для создания новой категории.
@@ -95,7 +90,7 @@ export class Income {
         const categoryBlockCreate = document.createElement('div');
         categoryBlockCreate.classList.add('categories-block');
 
-        // Создаем кнопку создания новой категрии
+        // Создаем кнопку создания новой категории
         const categoryItem = document.createElement('a');
         categoryItem.classList.add('categories-item', 'border', 'rounded-4', 'd-flex', 'flex-column', 'px-3', 'pt-2', 'align-items-center', 'justify-content-center', 'link-underline', 'link-underline-opacity-0');
         categoryItem.href = '/create-categories-income';
@@ -106,5 +101,35 @@ export class Income {
 
         // Добавляем блок в контейнер категорий
         this.categoriesContainer.appendChild(categoryBlockCreate);
+    }
+
+
+    // Удаление категории доходов
+    async deleteIncomeCategories() {
+        const result = await HttpUtils.request('/categories/income', 'DELETE');
+
+        // Если в ответе есть редирект, вызываем openNewRoute
+        if (result.redirect) {
+            return this.openNewRoute(result.redirect);
+        }
+
+        // Проверяем наличие ошибки и выводим сообщение
+        if (result.error) {
+            console.error('Ошибка при удалении категорий доходов:', result);
+            alert('Возникла ошибка при удалении категорий доходов. Пожалуйста, обратитесь в поддержку!');
+            return;
+        }
+
+        // Проверка, что ответ не пустой
+        if (!result.response || result.response.length === 0) {
+            console.warn('Получен пустой массив категорий доходов');
+            return;
+        }
+
+        // Печатаем полученные данные
+        console.log('Категории доходов:', result.response);
+
+        // Отображаем полученные данные
+        this.showRecords(result.response);
     }
 }

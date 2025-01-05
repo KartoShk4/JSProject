@@ -11,6 +11,7 @@ import {Expenses} from "./components/expenses/expenses";
 import {EditedCategoriesExpenses} from "./components/expenses/editedCategoriesExpenses";
 import {CreateCategoriesExpenses} from "./components/expenses/createCategoriesExpenses";
 import {Logout} from "./components/auth/logout";
+import {IncomeDelete} from "./components/income/incomeDelete";
 
 export class Router {
     constructor() {
@@ -104,6 +105,12 @@ export class Router {
                 },
             },
             {
+                route: '/income/delete',
+                load: () => {
+                    new IncomeDelete(this.openNewRoute.bind(this));
+                }
+            },
+            {
                 route: '/expenses',
                 title: 'Расходы',
                 filePathTemplate: '/templates/expenses/expenses.html',
@@ -135,7 +142,7 @@ export class Router {
                 load: () => {
                     new Logout(this.openNewRoute.bind(this));
                 }
-            }
+            },
         ];
     }
 

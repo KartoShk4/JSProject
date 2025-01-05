@@ -8,6 +8,7 @@ export class Income {
 
         // Получили общий контейнер категорий доходов
         this.categoriesContainer = document.getElementById('categories-container');
+        this.btnDelete = document.getElementById('btn-delete');
     }
 
     // Получение категорий доходов.
@@ -68,6 +69,29 @@ export class Income {
             btnDelete.setAttribute('data-bs-target', '#openModalIncomeDelete');
             btnDelete.textContent = 'Удалить';
 
+            // При клике на кнопку "Удалить", обновляем ссылку в модальном окне
+            btnDelete.addEventListener('click', () => {
+                // Получаем ссылку в модальном окне
+                const deleteLink = document.createElement('a');
+                deleteLink.href = `/income/delete?id=${categoryId}`;  // Ссылка для удаления
+                deleteLink.classList.add('btn', 'btn-success');
+                deleteLink.textContent = 'Да, удалить';
+
+                // Вставляем ссылку в modal-footer
+                const modalFooter = document.getElementById('modalFooter');
+                // Очищаем старую ссылку (если была)
+                modalFooter.innerHTML = '';
+                // Вставляем новую ссылку
+                modalFooter.appendChild(deleteLink);
+                // Также добавляем кнопку "Не удалять"
+                const cancelButton = document.createElement('button');
+                cancelButton.type = 'button';
+                cancelButton.classList.add('btn', 'btn-danger');
+                cancelButton.setAttribute('data-bs-dismiss', 'modal');
+                cancelButton.textContent = 'Не удалять';
+                modalFooter.appendChild(cancelButton);
+            });
+
             // Добавляем кнопки в блок
             const actionsDiv = document.createElement('div');
             actionsDiv.classList.add('actions', 'pb-4');
@@ -86,50 +110,26 @@ export class Income {
         });
 
         // Добавляем кнопку для создания новой категории.
-        // Создаем блок категории
         const categoryBlockCreate = document.createElement('div');
         categoryBlockCreate.classList.add('categories-block');
 
         // Создаем кнопку создания новой категории
-        const categoryItem = document.createElement('a');
-        categoryItem.classList.add('categories-item', 'border', 'rounded-4', 'd-flex', 'flex-column', 'px-3', 'pt-2', 'align-items-center', 'justify-content-center', 'link-underline', 'link-underline-opacity-0');
-        categoryItem.href = '/create-categories-income';
-        categoryItem.innerHTML = '<i class="fa-solid fa-plus text-secondary "></i>';
+        const categoryItemCreate = document.createElement('a');
+        categoryItemCreate.classList.add('categories-item', 'border', 'rounded-4', 'd-flex', 'flex-column', 'px-3', 'pt-2', 'align-items-center', 'justify-content-center', 'link-underline', 'link-underline-opacity-0');
+        categoryItemCreate.href = '/create-categories-income';
+        categoryItemCreate.innerHTML = '<i class="fa-solid fa-plus text-secondary "></i>';
 
         // Добавляем категорию в блок
-        categoryBlockCreate.appendChild(categoryItem);
+        categoryBlockCreate.appendChild(categoryItemCreate);
 
         // Добавляем блок в контейнер категорий
         this.categoriesContainer.appendChild(categoryBlockCreate);
+
+        // Закрытие модального окна и удаление оверлея
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
     }
 
-
-    // Удаление категории доходов
-    async deleteIncomeCategories() {
-        const result = await HttpUtils.request('/categories/income', 'DELETE');
-
-        // Если в ответе есть редирект, вызываем openNewRoute
-        if (result.redirect) {
-            return this.openNewRoute(result.redirect);
-        }
-
-        // Проверяем наличие ошибки и выводим сообщение
-        if (result.error) {
-            console.error('Ошибка при удалении категорий доходов:', result);
-            alert('Возникла ошибка при удалении категорий доходов. Пожалуйста, обратитесь в поддержку!');
-            return;
-        }
-
-        // Проверка, что ответ не пустой
-        if (!result.response || result.response.length === 0) {
-            console.warn('Получен пустой массив категорий доходов');
-            return;
-        }
-
-        // Печатаем полученные данные
-        console.log('Категории доходов:', result.response);
-
-        // Отображаем полученные данные
-        this.showRecords(result.response);
-    }
 }

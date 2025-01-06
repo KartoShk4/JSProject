@@ -1,17 +1,18 @@
-import {Dashboard} from "./components/dashboard";
-import {Login} from "./components/auth/login";
 import {SignUp} from "./components/auth/sign-up";
+import {Login} from "./components/auth/login";
+import {Dashboard} from "./components/dashboard";
 import {IncomeAndExpenses} from "./components/incomeAndExpenses/incomeAndExpenses";
 import {EditedIncomeAndExpenses} from "./components/incomeAndExpenses/editedIncomeAndExpenses";
 import {CreateIncomeAndExpenses} from "./components/incomeAndExpenses/createIncomeAndExpenses";
 import {Income} from "./components/income/income";
 import {EditedCategoriesIncome} from "./components/income/editedCategoriesIncome";
 import {CreateCategoriesIncome} from "./components/income/createCategoriesIncome";
+import {IncomeDelete} from "./components/income/incomeDelete";
 import {Expenses} from "./components/expenses/expenses";
 import {EditedCategoriesExpenses} from "./components/expenses/editedCategoriesExpenses";
 import {CreateCategoriesExpenses} from "./components/expenses/createCategoriesExpenses";
+import {ExpensesDelete} from "./components/expenses/expensesDelete";
 import {Logout} from "./components/auth/logout";
-import {IncomeDelete} from "./components/income/incomeDelete";
 
 export class Router {
     constructor() {
@@ -116,7 +117,7 @@ export class Router {
                 filePathTemplate: '/templates/expenses/expenses.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new Expenses();
+                    new Expenses(this.openNewRoute.bind(this));
                 },
             },
             {
@@ -125,7 +126,7 @@ export class Router {
                 filePathTemplate: '/templates/expenses/editedCategoriesExpenses.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new EditedCategoriesExpenses();
+                    new EditedCategoriesExpenses(this.openNewRoute.bind(this));
                 },
             },
             {
@@ -134,8 +135,14 @@ export class Router {
                 filePathTemplate: '/templates/expenses/createCategoriesExpenses.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new CreateCategoriesExpenses();
+                    new CreateCategoriesExpenses(this.openNewRoute.bind(this));
                 },
+            },
+            {
+                route: '/expenses/delete',
+                load: () => {
+                    new ExpensesDelete(this.openNewRoute.bind(this));
+                }
             },
             {
                 route: '/logout',

@@ -73,7 +73,8 @@ export class Income {
             btnDelete.addEventListener('click', () => {
                 // Получаем ссылку в модальном окне
                 const deleteLink = document.createElement('a');
-                deleteLink.href = `/income/delete?id=${categoryId}`;  // Ссылка для удаления
+                deleteLink.href = `/income/delete?id=${categoryId}`;
+                // Ссылка для удаления
                 deleteLink.classList.add('btn', 'btn-success');
                 deleteLink.textContent = 'Да, удалить';
 

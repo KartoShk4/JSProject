@@ -3,25 +3,11 @@
         <h1>Редактирование категории расходов</h1>
     </div>
     <div class="createInput">
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Название...">
+        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+               placeholder="Название..." id="input-edited">
         <div class="createInputButton pt-3">
-            <button type="button" class="btn btn-success me-2">Сохранить</button>
-            <a href="/expenses" type="button" class="btn btn-danger">Отмена</a>
+            <button type="button" class="btn btn-success me-2" id="btn-edited">Сохранить</button>
+            <a href="/expenses" class="btn btn-danger">Отмена</a>
         </div>
     </div>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="openModalIncomeDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body px-4 pt-4 fs-6 text-center">
-                Вы действительно хотите удалить категорию?<br> Связанные доходы будут удалены навсегда.
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-success">Да, удалить</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
-            </div>
-        </div>
-    </div>
-</div>

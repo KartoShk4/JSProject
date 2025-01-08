@@ -1,0 +1,82 @@
+<section class="content">
+    <div class="title pb-4 pt-5">
+        <h1>Доходы и расходы</h1>
+    </div>
+    <div class="btn-actions pb-4">
+        <a href="/create-income-and-expenses" class="btn btn-success me-2">Создать доход</a>
+        <a href="/create-income-and-expenses" class="btn btn-danger">Создать расход</a>
+    </div>
+    <div class="row align-items-center pb-5">
+        <div class="col-auto">
+            <div class="filters d-flex gap-3 align-items-center">
+                <button class="btn border border-secondary text-secondary">Сегодня</button>
+                <button class="btn border border-secondary text-secondary">Неделя</button>
+                <button class="btn border border-secondary text-secondary">Месяц</button>
+                <button class="btn border border-secondary text-secondary">Год</button>
+                <button class="btn border border-secondary text-secondary">Все</button>
+                <button class="btn border border-secondary text-secondary">Интервал</button>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="filters-interval">
+                <label for="calendar-from"></label>
+                <span class="pe-2">с</span><input id="calendar-from" class="input-calendar pe-2 link-secondary border-0" placeholder="Дата" readonly="">
+                <label for="calendar-to"></label>
+                <span class="pe-2">по</span><input id="calendar-to" class="input-calendar pe-2 link-secondary border-0" placeholder="Дата" readonly="">
+            </div>
+        </div>
+    </div>
+    <div class="table-block">
+        <table class="table">
+            <thead class="table-header text-center bg-danger text-white">
+            <tr class="headline">
+                <th scope="col" class="headline-number thead-color">№ операции</th>
+                <th scope="col" class="thead-color">Тип</th>
+                <th scope="col" class="thead-color">Категория</th>
+                <th scope="col" class="thead-color">Сумма</th>
+                <th scope="col" class="thead-color">Дата</th>
+                <th scope="col" class="thead-color">Комментарий</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr>
+                <th scope="row">1</th>
+                <td class="income-green">Доход</td>
+                <td>Зарплата</td>
+                <td>500$</td>
+                <td>11.09.2022</td>
+                <td></td>
+                <td class="table-icon-cell"><a data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete"><i class="fa-regular fa-trash-can"></i></a></td>
+                <td class="table-icon-cell"><a class="link-dark" href="/edited-income-and-expenses"><i class="fa-solid fa-pen"></i></a></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="expenses-red">Расход</td>
+                <td>Жильё</td>
+                <td>2 500$</td>
+                <td>12.09.2022</td>
+                <td></td>
+                <td class="table-icon-cell"><a data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete"><i class="fa-regular fa-trash-can"></i></a></td>
+                <td class="table-icon-cell"><a class="link-dark" href="/edited-income-and-expenses"><i class="fa-solid fa-pen"></i></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="openModalIncomeDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body px-4 pt-4 fs-6 text-center">
+                Вы действительно хотите удалить категорию?<br> Связанные доходы будут удалены навсегда.
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-success">Да, удалить</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+            </div>
+        </div>
+    </div>
+</div>

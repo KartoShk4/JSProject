@@ -1,0 +1,225 @@
+import {Dashboard} from "./components/dashboard";
+import {Login} from "./components/auth/login";
+import {SignUp} from "./components/auth/sign-up";
+import {IncomeAndExpenses} from "./components/incomeAndExpenses/incomeAndExpenses";
+import {EditedIncomeAndExpenses} from "./components/incomeAndExpenses/editedIncomeAndExpenses";
+import {CreateIncomeAndExpenses} from "./components/incomeAndExpenses/createIncomeAndExpenses";
+import {Income} from "./components/income/income";
+import {EditedCategoriesIncome} from "./components/income/editedCategoriesIncome";
+import {CreateCategoriesIncome} from "./components/income/createCategoriesIncome";
+import {Expenses} from "./components/expenses/expenses";
+import {EditedCategoriesExpenses} from "./components/expenses/editedCategoriesExpenses";
+import {CreateCategoriesExpenses} from "./components/expenses/createCategoriesExpenses";
+import {Logout} from "./components/auth/logout";
+
+export class Router {
+    constructor() {
+
+        this.titlePageElement = document.getElementById('title')
+        this.contentPageElement = document.getElementById('content')
+
+        // Вызываем функцию, для удобства перенесли её из конструктора.
+        this.initEvents();
+
+        this.routes = [
+            {
+                route: '/',
+                title: 'Главная',
+                filePathTemplate: '/templates/dashboard.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new Dashboard();
+                },
+            },
+            {
+                route: '/login',
+                title: 'Авторизация',
+                filePathTemplate: '/templates/login.html',
+                useLayout: false,
+                load: () => {
+                    new Login(this.openNewRoute.bind(this));
+                },
+            },
+            {
+                route: '/sign-up',
+                title: 'Регистрация',
+                filePathTemplate: '/templates/sign-up.html',
+                useLayout: false,
+                load: () => {
+                    new SignUp(this.openNewRoute.bind(this));
+                },
+            },
+            {
+                route: '/income-and-expenses',
+                title: 'Доходы & Расходы',
+                filePathTemplate: '/templates/incomeAndExpenses/incomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new IncomeAndExpenses();
+                },
+            },
+            {
+                route: '/edited-income-and-expenses',
+                title: 'Редактирование доходов & расходов',
+                filePathTemplate: '/templates/incomeAndExpenses/editedIncomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedIncomeAndExpenses();
+                },
+            },
+            {
+                route: '/create-income-and-expenses',
+                title: 'Создание доходов & расходов',
+                filePathTemplate: '/templates/incomeAndExpenses/createIncomeAndExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateIncomeAndExpenses();
+                },
+            },
+            {
+                route: '/income',
+                title: 'Доходы',
+                filePathTemplate: '/templates/income/income.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new Income();
+                },
+            },
+            {
+                route: '/edited-categories-income',
+                title: 'Редактирование доходов',
+                filePathTemplate: '/templates/income/editedCategoriesIncome.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedCategoriesIncome();
+                },
+            },
+            {
+                route: '/create-categories-income',
+                title: 'Создание доходов',
+                filePathTemplate: '/templates/income/createCategoriesIncome.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateCategoriesIncome();
+                },
+            },
+            {
+                route: '/expenses',
+                title: 'Расходы',
+                filePathTemplate: '/templates/expenses/expenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new Expenses();
+                },
+            },
+            {
+                route: '/edited-categories-expenses',
+                title: 'Редактирование расходов',
+                filePathTemplate: '/templates/expenses/editedCategoriesExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new EditedCategoriesExpenses();
+                },
+            },
+            {
+                route: '/create-categories-expenses',
+                title: 'Создание расходов',
+                filePathTemplate: '/templates/expenses/createCategoriesExpenses.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new CreateCategoriesExpenses();
+                },
+            },
+            {
+                route: '/logout',
+                load: () => {
+                    new Logout(this.openNewRoute.bind(this));
+                }
+            }
+        ];
+    }
+
+    initEvents() {
+        // Отлавливаем момент, когда пользователь загрузил страницу
+        window.addEventListener('DOMContentLoaded', this.activateRoute.bind(this));
+        // Вызываем функцию когда поменялся URL
+        window.addEventListener('popstate', this.activateRoute.bind(this));
+        // Вызываем функцию по созданию нового роута вручную, в обход браузера
+        document.addEventListener('click', this.clickHandler.bind(this));
+    }
+
+    async openNewRoute(url) {
+        // Взяли старый URl
+        const currentRoute = window.location.pathname;
+        // В историю браузера вручную поменяли на новый URL
+        history.pushState({}, '', url);
+        await this.activateRoute(null, currentRoute);
+    }
+
+    async clickHandler(e) {
+        // Проверка на ссылку
+        let element = null;
+        if (e.target.nodeName === 'A') {
+            element = e.target;
+        } else if (e.target.parentNode.nodeName === 'A') {
+            element = e.target.parentNode;
+        }
+
+        // Выполнили проверку на то что если ссылка является пустой или # или javascript:void(0), то мы её не обрабатываем.
+        if (element) {
+            e.preventDefault();
+            const url = element.href.replace(window.location.origin, '');
+            if (!url || url === '/#' || url.startsWith('javascript:void(0)')) {
+                return;
+            }
+            await this.openNewRoute(url);
+        }
+    }
+
+    async activateRoute(e, oldRoute = null) {
+        // Получили адрес сайта после хоста
+        const urlRoute = window.location.pathname;
+        // Определили на какой именно странице находится пользователь
+        const newRoute = this.routes.find(item => item.route === urlRoute);
+
+        if (newRoute) {
+            // Проверяем, есть ли у страницы 'title'
+            if (newRoute.title) {
+                // Если есть, то присваиваем странице нужный title
+                this.titlePageElement.innerText = newRoute.title;
+            }
+
+            // Проверяем у newRoute есть pathTemplate
+            if (newRoute.filePathTemplate) {
+                let contentBlock = this.contentPageElement;
+                // Если в нашем новом роуте есть useLayout (шаблон layout)
+                if (newRoute.useLayout) {
+                    // Если есть, то подставляем layout на страницу
+                    this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
+                    // Нашли на странице layout нужный нам id, куда будет подставляться весь контент.
+                    contentBlock = document.getElementById('contend-layout');
+                    // Для Layout (пока не используется)
+                    document.body.classList.add('sidebar-mini');
+                    document.body.classList.add('layout-fixed');
+                } else {
+                    // Для Layout (пока не используется)
+                    document.body.classList.remove('sidebar-mini');
+                    document.body.classList.remove('layout-fixed');
+                }
+                // Если pathTemplate есть, но нет useLayout, то подставляем контент на нужную страницу без layout.
+                contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
+            }
+
+            // Проверяем наличие cвойства load у newRoute, а так же проверяем что там имеется функция и файл не пустой.
+            if (newRoute.load && typeof newRoute.load === 'function') {
+                // Если всё есть, то вызываем функцию нужной странице.
+                newRoute.load();
+            }
+        } else {
+            console.log('Такая страница не найдена');
+            // Переводим пользователя на страницу авторизации в случае если страница не найдена
+            history.pushState({}, '', '/login');
+            await this.activateRoute(e);
+        }
+    }
+}

@@ -27,8 +27,8 @@ export class Income {
             return;
         }
 
-        // Печатаем полученные данные
-        console.log('Категории доходов:', result.response);
+        // // Печатаем полученные данные
+        // console.log('Категории доходов:', result.response);
 
         // Отображаем полученные данные
         this.showRecords(result.response);

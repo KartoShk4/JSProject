@@ -75,7 +75,7 @@ export class Router {
                 filePathTemplate: '/templates/incomeAndExpenses/createIncomeAndExpenses.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new CreateIncomeAndExpenses();
+                    new CreateIncomeAndExpenses(this.openNewRoute.bind(this));
                 },
             },
             {

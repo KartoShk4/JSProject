@@ -1,14 +1,21 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class Income {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         // Вызвали функционал получения категорий доходов.
         this.getIncomeCategories().then();
 
         // Получили общий контейнер категорий доходов
         this.categoriesContainer = document.getElementById('categories-container');
-        this.btnDelete = document.getElementById('btn-delete');
     }
 
     // Получение категорий доходов.
@@ -26,9 +33,6 @@ export class Income {
             alert('Возникла ошибка при запросе категорий доходов. Пожалуйста, обратитесь в поддержку!');
             return;
         }
-
-        // // Печатаем полученные данные
-        // console.log('Категории доходов:', result.response);
 
         // Отображаем полученные данные
         this.showRecords(result.response);
@@ -57,7 +61,7 @@ export class Income {
 
             // Добавляем кнопку "Редактировать"
             const btnEdit = document.createElement('a');
-            btnEdit.href = `/edited-categories-income?id=${categoryId}`;
+            btnEdit.href = `/edited-categories-income?id=${categoryId}&title=${encodeURIComponent(categoryTitle)}`;
             btnEdit.classList.add('btn', 'btn-primary', 'me-2');
             btnEdit.textContent = 'Редактировать';
 
@@ -132,5 +136,4 @@ export class Income {
             modalBackdrop.remove();
         }
     }
-
 }

@@ -1,8 +1,16 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class Expenses {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         // Вызвали функционал получения категорий доходов.
         this.getExpensesCategories().then();
 
@@ -56,7 +64,7 @@ export class Expenses {
 
             // Добавляем кнопку "Редактировать"
             const btnEdit = document.createElement('a');
-            btnEdit.href = `/edited-categories-expenses?id=${categoryId}`;
+            btnEdit.href = `/edited-categories-expenses?id=${categoryId}&title=${encodeURIComponent(categoryTitle)}`;
             btnEdit.classList.add('btn', 'btn-primary', 'me-2');
             btnEdit.textContent = 'Редактировать';
 

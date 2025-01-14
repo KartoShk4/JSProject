@@ -1,19 +1,40 @@
-import { HttpUtils } from "../../utils/http-utils";
+import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class EditedCategoriesExpenses {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute; // Получаем функцию редиректа
 
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         this.inputEdited = document.getElementById('input-edited');
         this.btnEdited = document.getElementById('btn-edited');
+
         this.btnEdited.addEventListener('click', () => this.editedExpensesCategories());
+
+        // Сразу после загрузки страницы, загружаем название редактируемого расхода
+        this.setInitialCategoryTitle();
     }
 
     // Метод для извлечения ID из URL
     getCategoryIdFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('id'); // Извлекаем значение параметра id
-    }
+        // Извлекаем значение параметра id
+        return urlParams.get('id');
+    };
+
+    // Устанавливаем название из ID в input
+    setInitialCategoryTitle() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryTitle = urlParams.get('title');
+        if (categoryTitle) {
+            this.inputEdited.value = decodeURIComponent(categoryTitle);
+        }
+    };
 
     // Редактирование категории доходов
     async editedExpensesCategories() {
@@ -33,7 +54,7 @@ export class EditedCategoriesExpenses {
         }
 
         // Отправляем запрос на сервер с новым названием категории
-        const result = await HttpUtils.request(`/categories/expense/${categoryId}`, 'PUT', true, { title: newCategoryTitle });
+        const result = await HttpUtils.request(`/categories/expense/${categoryId}`, 'PUT', true, {title: newCategoryTitle});
 
         // Проверка на ошибку запроса
         if (result.error) {
@@ -49,5 +70,5 @@ export class EditedCategoriesExpenses {
 
         // Если всё прошло успешно, переводим пользователя на страницу доходов
         this.openNewRoute('/expenses'); // Перенаправляем на страницу с доходами
-    }
+    };
 }

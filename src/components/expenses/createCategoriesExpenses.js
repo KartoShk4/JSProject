@@ -1,8 +1,15 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class CreateCategoriesExpenses {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
 
         this.inputCreateCategories = document.getElementById('input-create-categories');
         this.buttonCreate = document.getElementById('button-create');

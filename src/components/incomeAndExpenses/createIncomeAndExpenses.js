@@ -1,8 +1,16 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class CreateIncomeAndExpenses {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         document.getElementById('button-create').addEventListener('click', this.createOperations.bind(this));
 
         this.nameInputElement = document.getElementById('name-input');

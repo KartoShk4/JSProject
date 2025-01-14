@@ -1,8 +1,15 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class IncomeDelete {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
 
         // Метод для извлечения ID из URL
         const urlParams = new URLSearchParams(window.location.search);

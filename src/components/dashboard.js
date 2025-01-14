@@ -1,11 +1,19 @@
+import {AuthUtils} from "../utils/auth-utils";
 import {createPopper} from "@popperjs/core";
 import {Chart, ArcElement, Tooltip, Legend, PieController} from 'chart.js';
 import AirDatepicker from 'air-datepicker';
 
 
 export class Dashboard {
-    constructor() {
-        console.log('DASHBOARD');
+    constructor(openNewRoute) {
+        this.openNewRoute = openNewRoute;
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         // Вынесли функцию вызова tooltip из конструктора
         this.tooltip();
 
@@ -74,32 +82,29 @@ export class Dashboard {
             }
         });
 
-        
-            let fromDatePickerInitialized = false;
-            let toDatePickerInitialized = false;
+        let fromDatePickerInitialized = false;
+        let toDatePickerInitialized = false;
 
-            const fromInput = document.querySelector('#calendar-from');
-            const toInput = document.querySelector('#calendar-to');
+        const fromInput = document.querySelector('#calendar-from');
+        const toInput = document.querySelector('#calendar-to');
 
-            fromInput.addEventListener('click', () => {
-                if (!fromDatePickerInitialized) {
-                    new AirDatepicker('#calendar-from', {
-                        autoClose: true,
-                    });
-                    fromDatePickerInitialized = true;
-                }
-            });
+        fromInput.addEventListener('click', () => {
+            if (!fromDatePickerInitialized) {
+                new AirDatepicker('#calendar-from', {
+                    autoClose: true,
+                });
+                fromDatePickerInitialized = true;
+            }
+        });
 
-            toInput.addEventListener('click', () => {
-                if (!toDatePickerInitialized) {
-                    new AirDatepicker('#calendar-to', {
-                        autoClose: true,
-                    });
-                    toDatePickerInitialized = true;
-                }
-            });
-
-
+        toInput.addEventListener('click', () => {
+            if (!toDatePickerInitialized) {
+                new AirDatepicker('#calendar-to', {
+                    autoClose: true,
+                });
+                toDatePickerInitialized = true;
+            }
+        });
     }
 
 
@@ -143,6 +148,4 @@ export class Dashboard {
             tooltipElement.removeAttribute('data-show');
         });
     }
-
-
 }

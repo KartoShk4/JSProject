@@ -1,104 +1,22 @@
-<section class="categories ps-5 pt-5">
-    <div class="categories-title pb-4 pt-5">
-        <h1>Расходы</h1>
-    </div>
-    <div class="general d-flex flex-wrap gap-3">
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Еда</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete" class="btn btn-danger">Удалить</button>
-                </div>
-            </div>
+<div class="main">
+    <section class="categories ps-5 pt-5">
+        <div class="categories-title pb-4 pt-5">
+            <h1>Расходы</h1>
         </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Жильё</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Здоровье</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Кафе</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Авто</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Одежда</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Развлечения</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Счета</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <div class="categories-block">
-            <div class="categories-item border rounded-4 d-flex flex-column px-3 pt-2">
-                <span class="fs-3 pb-2">Спорт</span>
-                <div class="actions pb-4">
-                    <a href="/edited-categories-expenses" class="btn btn-primary me-2">Редактировать</a>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#openModalIncomeDelete">Удалить</button>
-                </div>
-            </div>
-        </div>
-        <a href="/create-categories-expenses" class="categories-block btn border rounded-4 d-flex align-items-center justify-content-center">
-            <i class="fa-solid fa-plus text-secondary"></i></a>
-    </div>
-</section>
+        <div class="general d-flex flex-wrap gap-3" id="categories-container"></div>
+    </section>
 
-<!-- Modal -->
-<div class="modal fade" id="openModalIncomeDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body px-4 pt-4 pb-0 fs-6 text-center">
-                Вы действительно хотите удалить категорию?
-            </div>
-            <div class="modal-footer d-flex justify-content-center pb-4">
-                <button type="button" class="btn btn-success me-3">Да, удалить</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+    <!-- Modal -->
+    <div class="modal fade" id="openModalIncomeDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body px-4 pt-4 fs-6 text-center">
+                    Вы действительно хотите удалить категорию?<br> Связанные расходы будут удалены навсегда.
+                </div>
+                <div class="modal-footer d-flex justify-content-center" id="modalFooter">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+                </div>
             </div>
         </div>
     </div>

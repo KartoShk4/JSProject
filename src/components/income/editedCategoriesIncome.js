@@ -1,25 +1,56 @@
-import { HttpUtils } from "../../utils/http-utils";
+import {HttpUtils} from "../../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
 
 export class EditedCategoriesIncome {
     constructor(openNewRoute) {
+
+        // Выполняем проверку на наличии токена, если его нет
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
+            // Переводим пользователя на главную страницу
+            return openNewRoute('/login');
+        }
+
         this.openNewRoute = openNewRoute; // Получаем функцию редиректа
 
         this.inputEdited = document.getElementById('input-edited');
         this.btnEdited = document.getElementById('btn-edited');
+
+        // По нажатию на кнопку вызываем функцию editedIncomeCategories()
         this.btnEdited.addEventListener('click', () => this.editedIncomeCategories());
+
+        // Сразу после загрузки страницы, загружаем название редактируемого дохода
+        this.setInitialCategoryTitle();
     }
 
     // Метод для извлечения ID из URL
     getCategoryIdFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('id'); // Извлекаем значение параметра id
+        // Извлекаем значение параметра id
+        return urlParams.get('id');
     }
+
+    // Устанавливаем название из ID в input
+    setInitialCategoryTitle() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryTitle = urlParams.get('title');
+        if (categoryTitle) {
+            this.inputEdited.value = decodeURIComponent(categoryTitle);
+        }
+    };
+
+    async categoryTitle() {
+        const categoryId = this.getCategoryIdFromUrl();
+        if (!categoryId) {
+            console.warn('Не удалось получить ID категории')
+        }
+    };
 
     // Редактирование категории доходов
     async editedIncomeCategories() {
-        const categoryId = this.getCategoryIdFromUrl(); // Получаем ID из URL
+        // Получаем ID из URL
+        const categoryId = this.getCategoryIdFromUrl();
         if (!categoryId) {
-            alert('Не удалось получить ID категории.');
+            console.warn('Не удалось получить ID категории.');
             return;
         }
 
@@ -28,12 +59,12 @@ export class EditedCategoriesIncome {
 
         // Если поле ввода пустое, выводим предупреждение
         if (!newCategoryTitle) {
-            alert('Пожалуйста, введите новое название категории!');
+            console.warn('Пожалуйста, введите новое название категории!');
             return;
         }
 
         // Отправляем запрос на сервер с новым названием категории
-        const result = await HttpUtils.request(`/categories/income/${categoryId}`, 'PUT', true, { title: newCategoryTitle });
+        const result = await HttpUtils.request(`/categories/income/${categoryId}`, 'PUT', true, {title: newCategoryTitle});
 
         // Проверка на ошибку запроса
         if (result.error) {
@@ -44,10 +75,11 @@ export class EditedCategoriesIncome {
 
         // Обработка редиректа, если он присутствует в ответе
         if (result.redirect) {
-            return this.openNewRoute(result.redirect); // Используем переданную функцию для редиректа
+            // Используем переданную функцию для редиректа
+            return this.openNewRoute(result.redirect);
         }
 
         // Если всё прошло успешно, переводим пользователя на страницу доходов
-        this.openNewRoute('/income'); // Перенаправляем на страницу с доходами
+        this.openNewRoute('/income');
     }
 }

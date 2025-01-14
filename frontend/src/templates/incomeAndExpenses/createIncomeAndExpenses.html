@@ -4,17 +4,21 @@
     </div>
     <div class="createInput d-flex flex-column gap-2">
         <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-               placeholder="Название...">
+               placeholder="Название..." id="name-input">
+        <span id="name-input-error" class="error invalid-feedback">Заполните поле</span>
         <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-               placeholder="Категория...">
+               placeholder="Категория..." id="category-input">
+        <span id="category-input-error" class="error invalid-feedback">Заполните поле</span>
         <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-               placeholder="Сумма в $...">
+               placeholder="Сумма в $..." id="sum-input">
+        <span id="sum-input-error" class="error invalid-feedback">Заполните поле</span>
         <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-               placeholder="Дата...">
+               placeholder="Дата..." id="date-input">
+        <span id="date-input-error" class="error invalid-feedback">Заполните поле</span>
         <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-               placeholder="Комментарий...">
+               placeholder="Комментарий..." id="comments-input">
         <div class="createInputButton pt-3">
-            <button type="button" class="btn btn-success me-2">Создать</button>
+            <button type="button" class="btn btn-success me-2" id="button-create">Создать</button>
             <a href="/income-and-expenses" type="button" class="btn btn-danger">Отмена</a>
         </div>
     </div>

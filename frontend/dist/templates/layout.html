@@ -2,7 +2,7 @@
     <aside class="main-sidebar layout-fixed d-flex">
         <div class="vr"></div>
         <div class="d-flex flex-column flex-shrink-0" style="width: 219px;">
-            <a href="javascript:void(0);" class="d-flex flex-column align-items-center pt-4 pb-2">
+            <a href="/" class="d-flex flex-column align-items-center pt-4 pb-2">
                 <img src="/images/logo.png" class="brand-link" width="98" height="40" alt="finance-logo">
             </a>
             <hr>
@@ -34,17 +34,16 @@
 
             <hr>
             <div class="dropdown ps-3 pb-4">
-                <a href="javascript:void(0);"
-                   class="dropdown-user d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                <a class="dropdown-user d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                    data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/images/user.png" alt="avatar" width="32" height="32"
                          class="rounded-circle me-2">
                     <div class="user-name-block">
-                        <strong class="user-name ps-2 pe-2">Evgeny</strong>
+                        <strong class="user-name ps-2 pe-2" id="username">Evgeny</strong>
                     </div>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item btn" href="javascript:void(0);">Sign out</a></li>
+                    <li><a class="dropdown-item btn" href="/logout">Sign out</a></li>
                 </ul>
             </div>
         </div>

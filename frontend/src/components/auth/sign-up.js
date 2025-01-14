@@ -1,9 +1,12 @@
+import {AuthUtils} from "../../utils/auth-utils";
+import {HttpUtils} from "../../utils/http-utils";
+
 export class SignUp {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
         // Выполняем проверку на наличии токена, если он есть
-        if (localStorage.getItem('accessToken')) {
+        if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
             // Переводим пользователя на главную страницу
             return openNewRoute('/');
         }
@@ -61,36 +64,27 @@ export class SignUp {
         this.commonErrorElement.style.display = 'none';
         // Выполняем запрос авторизации
         if (this.validateForm()) {
-            const response = await fetch('http://localhost:3000/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: this.fullNameElement.value.split(' ')[0],
-                    lastName: this.fullNameElement.value.split(' ')[1],
-                    email: this.emailElement.value,
-                    password: this.passwordElement.value,
-                    passwordRepeat: this.passwordRepeatElement.value,
-                })
+            const result = await HttpUtils.request('/signup', 'POST', false , {
+                name: this.fullNameElement.value.split(' ')[0],
+                lastName: this.fullNameElement.value.split(' ')[1],
+                email: this.emailElement.value,
+                password: this.passwordElement.value,
+                passwordRepeat: this.passwordRepeatElement.value,
             });
 
-            const result = await response.json();
-
-            if (result.error || !result.id || !result.name) {
+            if (result.error || !result.response || (result.response && (!result.response.id || !result.response.name))) {
                 this.commonErrorElement.style.display = 'block';
             }
 
             // Сохраняем данные в localStorage
-            const userInfo = {id: result.user.id, email: result.user.email, name: result.user.name, lastName: result.user.lastName};
+            const userInfo = {id: result.response.user.id, email: result.response.user.email, name: result.response.user.name, lastName: result.response.user.lastName};
 
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';
 
-            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            localStorage.setItem(AuthUtils.userInfoTokenKey, JSON.stringify(userInfo));
 
-            // После успешной валидации и проверки, переводим пользователя на главную страницу.
+            // После успешной валидации и проверки, переводим пользователя на страницу входа.
             this.openNewRoute('/login');
         }
     }

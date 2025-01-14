@@ -1,17 +1,17 @@
-function setupDropdown() {
-    const dropdownToggle = document.getElementById('btn-action'); // Ищем кнопку
-    const chevronIcon = document.getElementById('fa-chevron-right'); // Ищем иконку
-
-    // Проверяем существование элементов
-    if (dropdownToggle && chevronIcon) {
-        dropdownToggle.addEventListener('click', () => {
+// Функционал отвечающий за поворот стрелки
+document.addEventListener('click', (event) => {
+    // Проверяем, кликнули ли по кнопке
+    const dropdownToggle = event.target.closest('#btn-action');
+    if (dropdownToggle) {
+        const chevronIcon = dropdownToggle.querySelector('#fa-chevron-right');
+        if (chevronIcon) {
+            // Поворачиваем стрелку
             chevronIcon.classList.toggle('rotate');
-            dropdownToggle.classList.toggle('border-radius-bottom');
-        });
-    } else {
-        console.error('Элементы не найдены при рендере.');
+        }
     }
-}
+});
 
-// Вызывайте эту функцию сразу после вставки HTML кнопки в DOM
-setupDropdown();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+    });
+}

@@ -152,6 +152,9 @@ $color-light-gray: #DEE2E6;
     }
   }
 
+  .dropdown-user {
+    cursor: pointer;
+  }
 
   .vr {
     height: 100vh;
@@ -205,6 +208,19 @@ $color-light-gray: #DEE2E6;
       }
     }
 
+    .filters-interval {
+      .input-calendar {
+        width: 100px;
+        padding-left: 8px;
+      }
+
+      .input-calendar {
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+
     .schedule {
       .schedule-title {
         color: $color-blue;
@@ -225,55 +241,57 @@ $color-light-gray: #DEE2E6;
         width: 450px;
       }
     }
-
-    .filters-interval {
-      .input-calendar {
-        width: 100px;
-        padding-left: 8px;
-      }
-    }
   }
 }
 
 // INCOME-AND-EXPENSES
-.title {
-  color: $color-blue;
-}
+.content {
+  .title {
+    color: $color-blue;
+  }
 
-.table-block {
-  .table {
-    .table-header {
-      border-top: 1px solid $color-light-gray;
+  .table-block {
+    .table {
+      .table-header {
+        border-top: 1px solid $color-light-gray;
+      }
+
+      .headline-number {
+        width: 150px;
+      }
+
+      .thead-color {
+        color: $color-blue;
+      }
     }
-    .headline-number {
-      width: 150px;
+
+    .table-icon-cell {
+      width: 10px;
+      cursor: pointer;
     }
-    .thead-color {
-      color: $color-blue;
+
+    .income-green {
+      color: green !important;
+    }
+
+    .expenses-red {
+      color: red !important;
     }
   }
 }
 
+// COMMON CATEGORIES (INCOME AND EXPENSES)
+.main {
+  .categories-title {
+    color: $color-blue;
+  }
 
+  .categories-item {
+    width: 352px;
+    height: 121px;
+  }
 
-.table-icon-cell {
-  width: 10px;
-  cursor: pointer;
+  .category-title {
+    color: $color-blue;
+  }
 }
-
-.btn-trash:active {
-  //border: transparent;
-}
-
-.income-green {
-  color: green !important;
-}
-
-.expenses-red {
-  color: red !important;
-}
-
-.rotate {
-  transform: rotate(90deg);
-}
-

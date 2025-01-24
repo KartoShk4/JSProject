@@ -59,12 +59,12 @@ export class SignUp {
         return isValid;
     }
 
-    async signUp() {
+    async signUp(key, value) {
         // Скрываем ошибку в начале авторизации
         this.commonErrorElement.style.display = 'none';
         // Выполняем запрос авторизации
         if (this.validateForm()) {
-            const result = await HttpUtils.request('/signup', 'POST', false , {
+            const result = await HttpUtils.request('/signup', 'POST', false, {
                 name: this.fullNameElement.value.split(' ')[0],
                 lastName: this.fullNameElement.value.split(' ')[1],
                 email: this.emailElement.value,
@@ -77,7 +77,12 @@ export class SignUp {
             }
 
             // Сохраняем данные в localStorage
-            const userInfo = {id: result.response.user.id, email: result.response.user.email, name: result.response.user.name, lastName: result.response.user.lastName};
+            const userInfo = {
+                id: result.response.user.id,
+                email: result.response.user.email,
+                name: result.response.user.name,
+                lastName: result.response.user.lastName
+            };
 
             // Повторно скрываем ошибку при успешной авторизации
             this.commonErrorElement.style.display = 'none';
@@ -88,5 +93,4 @@ export class SignUp {
             this.openNewRoute('/login');
         }
     }
-
 }

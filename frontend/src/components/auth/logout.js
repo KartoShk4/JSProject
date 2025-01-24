@@ -4,13 +4,6 @@ import {HttpUtils} from "../../utils/http-utils";
 export class Logout {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
-
-        // Выполняем проверку на наличии токена, если он есть
-        if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
-            // Переводим пользователя на главную страницу
-            return openNewRoute('/');
-        }
-
         this.logout().then();
     }
 

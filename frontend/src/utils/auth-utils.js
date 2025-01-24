@@ -34,10 +34,10 @@ export class AuthUtils {
         }
     }
 
+    // Обновляем токен
     static async updateRefreshToken() {
         let result = false;
         const refreshToken = this.getAuthInfo(this.refreshTokenKey);
-        console.log('refreshToken:', refreshToken); // Логирование refreshToken
         if (refreshToken) {
             const response = await fetch(config.api + '/refresh', {
                 method: 'POST',
@@ -47,18 +47,20 @@ export class AuthUtils {
                 },
                 body: JSON.stringify({refreshToken: refreshToken})
             });
-            console.log('Response status:', response.status); // Логирование статуса ответа
+
             if (response && response.status === 200) {
                 const tokens = await response.json();
-                console.log('Updated tokens:', tokens); // Логирование обновленных токенов
                 if (tokens && !tokens.error) {
-                    this.setAuthInfo(tokens.accessToken, tokens.refreshToken);
+                    this.setAuthInfo(tokens.tokens.accessToken, tokens.tokens.refreshToken);
+                    console.log(tokens.refreshToken);
                     result = true;
                 } else {
-                    console.error('Error in tokens:', tokens.error); // Логирование ошибки в ответе
+                    // Логирование ошибки в ответе
+                    console.error('Error in tokens:', tokens.error);
                 }
             } else {
-                console.error('Failed to refresh token, status:', response.status); // Логирование ошибки
+                // Логирование ошибки
+                console.error('Failed to refresh token, status:', response.status);
             }
         }
         // Если у нас есть в localStorage информация о токенах, удаляем информацию и отправляем на страницу /login

@@ -52,7 +52,7 @@ module.exports = {
                 {from: "./src/static/images", to: "images"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/webfonts", to: "webfonts"},
                 {from: "./node_modules/@fortawesome/fontawesome-free/css/all.min.css", to: "css"},
-                {from: "./src/scripts/script.js", to: "js"},
+                // {from: "./src/components/common-scripts.js", to: "js"},
             ],
         }),
     ],

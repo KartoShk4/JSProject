@@ -57,7 +57,6 @@ export class CreateCategoriesIncome {
         }
 
         // Печатаем полученные данные
-        console.log('Категории доходов:', result.response);
         this.openNewRoute('/income')
     }
 }

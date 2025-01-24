@@ -13,6 +13,7 @@ import {EditedCategoriesExpenses} from "./components/expenses/editedCategoriesEx
 import {CreateCategoriesExpenses} from "./components/expenses/createCategoriesExpenses";
 import {ExpensesDelete} from "./components/expenses/expensesDelete";
 import {Logout} from "./components/auth/logout";
+import {CommonScripts} from "./components/common-scripts";
 
 export class Router {
     constructor() {
@@ -31,6 +32,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new Dashboard(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -57,7 +59,8 @@ export class Router {
                 filePathTemplate: '/templates/incomeAndExpenses/incomeAndExpenses.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new IncomeAndExpenses();
+                    new IncomeAndExpenses(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -67,6 +70,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new EditedIncomeAndExpenses();
+                    new CommonScripts();
                 },
             },
             {
@@ -76,6 +80,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new CreateIncomeAndExpenses(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -85,6 +90,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new Income(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -94,6 +100,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new EditedCategoriesIncome(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -103,6 +110,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new CreateCategoriesIncome(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -118,6 +126,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new Expenses(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -127,6 +136,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new EditedCategoriesExpenses(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {
@@ -136,6 +146,7 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new CreateCategoriesExpenses(this.openNewRoute.bind(this));
+                    new CommonScripts();
                 },
             },
             {

@@ -179,6 +179,25 @@ $color-light-gray: #DEE2E6;
   .modal-footer {
     border-top: none;
   }
+
+  @media screen and (max-width: 425px) {
+    .modal-dialog-centered {
+      min-height: calc(65% - var(--bs-modal-margin) * 2);
+
+      .modal-content {
+        width: 68%;
+      }
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .modal-dialog-centered {
+      min-height: calc(50% - var(--bs-modal-margin) * 2);
+
+      .modal-content {
+        width: 50%;
+      }
+    }
+  }
 }
 
 // DASHBOARD
@@ -294,4 +313,23 @@ $color-light-gray: #DEE2E6;
   .category-title {
     color: $color-blue;
   }
+
+  .date-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #aaa;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  input[type="date"]:focus + .date-placeholder,
+  input[type="date"]:not(:placeholder-shown) + .date-placeholder {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #333;
+  }
 }
+
+
